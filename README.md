@@ -85,12 +85,12 @@ After the measurement command, the sensor driver waits for 300 milliseconds, whi
 ### Value Scaling 
 The first two bits in the first byte are status bits, which are not used by this library. They are masked out. Then, the remaining six bits of the first byte and the second byte are joined together to obtain the measured value rFraw. Then, the value is scaled to float via the formula given in the I2C description: 
 
-'''
+```
 rF[5] = 100 / 2^14 *rFraw
-'''
+```
 
 The same approach is done for the temperature. The third byte send by the sensor contains the eight most significant bits of the raw temeprature value, and the 4th byte contains the six least significant bits of the raw temperature value. The last two bits in that byte carry no information and shall not be used and are masked out. Then, the raw value is converted to teh actual temperature via the formula given in the I2C description:
 
-'''
+```
 T[°C] = 165 / 2^14 * Traw -40
-'''
+```
